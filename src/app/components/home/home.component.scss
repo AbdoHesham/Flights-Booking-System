@@ -1,0 +1,42 @@
+
+// end first section
+
+      .bd-1 , .bd-2 ,.bd-3{
+        background-size: cover  ;
+        background-position: center;
+        background-repeat: no-repeat;
+        height: 500px;
+
+      }
+      .bd-1 , .bd-2 ,.bd-3 img{
+width: 100%;
+        height: 500px;
+
+      }
+
+.let-text-right{
+  text-align: right!important;
+}
+.let-text-left{
+  text-align: left!important;
+}
+
+
+.custom-rounded{
+  width: 35px;
+  height: 35px;
+}
+/* start styles for tables  */
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border-bottom: 1px solid #d1d1d1;
+  text-align: center;
+  font-size: 13px;
+  padding: 5px;
+
+}
