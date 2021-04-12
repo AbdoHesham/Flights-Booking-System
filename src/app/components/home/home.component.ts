@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { Student } from 'src/shared/models/student';
+import { flight } from 'src/shared/models/flight';
 import { FooterService } from 'src/shared/services/service-footer/footer.service';
 import { NavService } from 'src/shared/services/service-nav/nav.service';
 import { HomeService } from '../../../shared/services/home/home.service';
-const FILTER_PAG_REGEX = /[^0-9]/g;
+import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-home',
@@ -13,15 +14,20 @@ const FILTER_PAG_REGEX = /[^0-9]/g;
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
+  active = 1;
   data: any;
-  page: number = 1;
-  studentPerPage: number = 6;
-  totalPages: any;
-  totallength: any;
-  ourData: any;
-  totallengthForData: any;
-  pageSize = 6;
-  STUDENTS: Student[] = [];
+  param: any;
+  param2:any;
+  flights: any[] = [];
+  refillFlights: any[] = [];
+  filterdArray: any;
+  model: NgbDateStruct | undefined;
+  filterInputs = [
+    { key: 'to', value: '' },
+    { key: 'from', value: '' },
+    { key: 'Departing', value: '' },
+  ];
+  param3: any;
 
   // currentLang: string;
 
@@ -29,47 +35,57 @@ export class HomeComponent implements OnInit {
     private router: Router,
     private toastr: ToastrService,
     public HomeService: HomeService,
+    private fg: FormBuilder,
     public ftr: FooterService,
     public nav: NavService
   ) {}
+  public searchForm = this.fg.group({
+    leaving_Place: ['', [Validators.required]],
+    going_Place: ['', [Validators.required]],
+    departing_date: ['', [Validators.required]],
+  });
 
   ngOnInit() {
-    this.getAllStudents(this.page,this.pageSize);
+    this.refillFlights = this.getDataFromService();
+    console.table(this.flights);
     this.nav.show();
     this.ftr.show();
   }
 
-  show() {
-    this.toastr.success('done');
+  getDataFromService() {
+    this.flights = this.HomeService.getFlights;
+    return this.flights;
   }
 
-  getAllStudents(pageNum: number,pageSize:number  ) {
-    this.HomeService.getStudents(pageNum, pageSize).subscribe(
-      (res) => {
-        this.data = res;
-        console.log(this.data);
-        this.ourData = this.data.data;
-        this.STUDENTS = this.ourData;
-        this.totallength = this.ourData.length;
-        this.totallengthForData = this.data.total;
-      },
-      (err) => {
-        console.log(err);
-      }
+  OnSearch() {
+
+    this.refillFlights = this.flights;
+    this.param = this.searchForm.controls.going_Place.value;
+    this.param2 = this.searchForm.controls.leaving_Place.value;
+    this.param3 = this.searchForm.controls.departing_date.value;
+
+    this.filterInputs[0].value = this.param;
+    this.filterInputs[1].value = this.param2;
+    this.filterInputs[2].value = this.param3;
+
+    this.filterInputs.map((obj) => {
+      if (obj.value)  this.filterWord(this.param,obj.key);
+      console.log(this.param,this.param2,this.param3 ,obj.key)
+
+    });
+
+    this.router.navigateByUrl('search')
+  }
+
+  filterWord(searchKey: string, props: string) {
+    this.refillFlights = this.refillFlights.filter(
+      (fight) => fight[props] == searchKey
     );
+    localStorage.setItem('refillFlights',JSON.stringify(this.refillFlights))
+    console.log(this.refillFlights);
   }
 
-  students: Student[] = [];
-  //pagination
-  callPage(number: number) {
-    // this.students = this.STUDENTS.map((student, i) => ({
-    //   id: i + 1,
-    //   ...student,
-    // })).slice(
-    //   (this.page - 1) * this.pageSize,
-    //   (this.page - 1) * this.pageSize + this.pageSize
-    // );
-    this.getAllStudents(+number,this.pageSize);
-    console.log(this.pageSize)
-  }
+
+
+
 }

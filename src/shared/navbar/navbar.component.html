@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-light  mb-3" [ngClass]="{'navbar-inverse': scrolled}"*ngIf="nav.visible" >
   <!--  -->
   <div class="container">
-    <a class="navbar-brand" style="margin-right:70%;"   [routerLink]="'.'"><img class="logo" src="../../assets/images/logo.jpeg" alt="logo"></a>
+    <a class="navbar-brand" style="margin-right:70%;"   [routerLink]="'.'"><img class="logo" src="../../assets/images/flyinLogo.png" alt="logo"></a>
 
     <button class="navbar-toggler" type="button" (click)="isMenuCollapsed = !isMenuCollapsed">
       &#9776;
@@ -25,7 +25,7 @@
             <button class=" btn btn-golden"  (click)="isMenuCollapsed = true ; logout()"  [hidden]="!isLogged()">logout</button>
           </li>
           <li class="nav-item ">
-            <p class="nav-link "   [hidden]="!isLogged()">hello {{geartingName}}</p>
+            <p class="nav-link "   [hidden]="!isLogged()" >hello  </p>
           </li>
         </ul>
       </div>

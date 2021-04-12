@@ -33,9 +33,11 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.changeLang()
-    this.geartingName=JSON.parse(localStorage.getItem('userdata')|| '{}').email
 
+    this.changeLang()
+    // this.geartingName=
+
+    //JSON.parse(localStorage.getItem('userdata')|| '{}').email
 
   }
 

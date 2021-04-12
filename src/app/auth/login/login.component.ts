@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,EventEmitter, Output } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { FooterService } from 'src/shared/services/service-footer/footer.service';
 import { NavService } from 'src/shared/services/service-nav/nav.service';
@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
   show: boolean=false
   userCredentials: {}={};
-
+@Output () greatingNameEvent = new EventEmitter<string>();
   constructor(public ftr : FooterService,
     public nav: NavService,
     private fg: FormBuilder,
@@ -62,6 +62,8 @@ export class LoginComponent implements OnInit {
     else {
              localStorage.setItem('userdata',  JSON.stringify(this.userCredentials));
             //just for development
+            // this.greatingNameEvent.emit(email)
+            // console.log(this.greatingNameEvent.emit(email))
             this.toastr.success("you are logged in successfully");
             this.router.navigateByUrl('/');
 
