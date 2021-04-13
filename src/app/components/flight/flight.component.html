@@ -26,14 +26,14 @@
       <h4 class="departure-title">Departure Flight</h4>
       <div class="departure-info">
         <span class="title">Leaves</span>
-        <p class="date">{{flight.Departing }}</p>
+        <p class="date">{{flight.Departing | date:'fullDate'}}</p>
         <p class="daytime"> ({{flight.timeDeparting }})</p>
         <span class="location">Ninoy Aquino International Airport Terminal 3</span>
       </div>
 
       <div class="departure-info">
         <span class="title">Arrives</span>
-        <p class="date">{{flight.Arriving }}</p>
+        <p class="date">{{flight.Arriving | date:'fullDate'}}</p>
         <p class="daytime"> ({{flight.timeArriving }})</p>
         <span class="location">Francisco Bangoy International Airport</span>
       </div>

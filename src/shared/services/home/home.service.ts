@@ -6,8 +6,8 @@ export class HomeService {
   flights: flight[] = [
     {
       id: '1',
-      Arriving: '22-4-2021 ',
-      Departing: '22-4-2021 ',
+      Arriving: new Date( "2021-04-22 "),
+      Departing: new Date( "2021-04-22 "),
       from: 'cairo',
       img: '../../../assets/images/dubai.jpg',
       price: 5000,
@@ -19,8 +19,8 @@ export class HomeService {
     },
     {
       id: '2',
-      Arriving: '23-4-2021 ',
-      Departing: '23-4-2021 ',
+      Arriving: new Date( "2021-04-23 "),
+      Departing: new Date( "2021-04-23 "),
       from: 'cairo',
       img: '../../../assets/images/dammam.jpg',
       price: 5000,
@@ -32,8 +32,8 @@ export class HomeService {
     },
     {
       id: '3',
-      Arriving: '24-4-2021 ',
-      Departing: '24-4-2021 ',
+      Arriving: new Date("2021-04-24 "),
+      Departing: new Date( "2021-04-24 "),
       from: 'cairo',
       img: '../../../assets/images/england.jpg',
       price: 5000,
@@ -45,8 +45,8 @@ export class HomeService {
     },
     {
       id: '4',
-      Arriving: '25-4-2021 ',
-      Departing: '25-4-2021 ',
+      Arriving: new Date("2021-04-25 "),
+      Departing:new Date( "2021-04-25 "),
       from: 'cairo',
       img: '../../../assets/images/sharm.jpg',
       price: 5000,
@@ -59,8 +59,8 @@ export class HomeService {
     },
     {
       id: '5',
-      Arriving: '26-4-2021 ',
-      Departing: '26-4-2021 ',
+      Arriving:new Date( "2021-04-26 "),
+      Departing: new Date( "2021-04-26 "),
       from: 'cairo',
       img: '../../../assets/images/germany.jpg',
       price: 5000,
