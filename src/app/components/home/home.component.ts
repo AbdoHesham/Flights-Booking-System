@@ -28,6 +28,7 @@ export class HomeComponent implements OnInit {
     { key: 'Departing', value: '' },
   ];
   param3: any;
+  refillFlights2: any;
 
   // currentLang: string;
 
@@ -58,8 +59,8 @@ export class HomeComponent implements OnInit {
   }
 
   OnSearch() {
-
-    this.refillFlights = this.flights;
+debugger
+    // this.refillFlights = this.flights;
     this.param = this.searchForm.controls.going_Place.value;
     this.param2 = this.searchForm.controls.leaving_Place.value;
     this.param3 = this.searchForm.controls.departing_date.value;
@@ -69,7 +70,8 @@ export class HomeComponent implements OnInit {
     this.filterInputs[2].value = this.param3;
 
     this.filterInputs.map((obj) => {
-      if (obj.value)  this.filterWord(this.param,obj.key);
+      debugger
+      if (obj.value)  this.filterWord(this.param,this.param2,obj.key);
       console.log(this.param,this.param2,this.param3 ,obj.key)
 
     });
@@ -77,9 +79,12 @@ export class HomeComponent implements OnInit {
     this.router.navigateByUrl('search')
   }
 
-  filterWord(searchKey: string, props: string) {
+  filterWord(searchKey: string,searchKey2: string, props: string) {
     this.refillFlights = this.refillFlights.filter(
       (fight) => fight[props] == searchKey
+    );
+      this.refillFlights2 =this.flights.filter(
+      (fight) => fight[props] == searchKey2
     );
     localStorage.setItem('refillFlights',JSON.stringify(this.refillFlights))
     console.log(this.refillFlights);

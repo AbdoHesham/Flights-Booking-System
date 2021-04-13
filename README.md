@@ -25,3 +25,13 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+## routes 
+1-the default route it is to home commponent ('/home ').
+2-when you fill search form and press search button ... results will show in search 
+commponent ('/search') .
+3-more details it goes to flight commponent ('flight/:id').
+4-to boot flight press book now  and you can find it in home and flight booking commponent ('book/:id')
+to book you should to fill booking form .
+5- after you book directly you will get your ticket in ticket commponent ('ticket').
+6-you can see your clients and how many bookings we have in admin commponent ('/admin')

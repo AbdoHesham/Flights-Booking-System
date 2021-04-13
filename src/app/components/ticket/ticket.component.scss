@@ -13,20 +13,20 @@ $bradius : 10px;
 
 // Media queries
 
-// @mixin bp($point) {
-//   @if $point == mobile {
-//       @media (max-width: 500px)  { @content ; }
-//   }
-//   @else if $point == ipadV {
-//       @media (min-width: 501px) and (max-width:1023px) { @content ; }
-//   }
-//   @else if $point == ipadVMore {
-//       @media (min-width: 501px) { @content ; }
-//   }
-//   @else if $point == ipadHmore {
-//       @media (min-width: 1024px) { @content ; }
-//   }
-// }
+@mixin bp($point) {
+  @if $point == mobile {
+      @media (max-width: 500px)  { @content ; }
+  }
+  @else if $point == ipadV {
+      @media (min-width: 501px) and (max-width:1023px) { @content ; }
+  }
+  @else if $point == ipadVMore {
+      @media (min-width: 501px) { @content ; }
+  }
+  @else if $point == ipadHmore {
+      @media (min-width: 1024px) { @content ; }
+  }
+}
 
 
 // A bit of styling
@@ -65,13 +65,11 @@ section, header {
   background-color: white;
   & > div {
     padding: $spacingV $spacingH;
-    @media only screen and (max-width: 600px) {
-
+    @include bp(mobile){
       &:first-child {
         padding: $spacingV $spacingH $spacingV 0;
       }
     }
-
   }
 }
 
@@ -100,7 +98,7 @@ header {
 
         height: 30vh;
     img{
-       object-fit:contain;
+      @include object-fit(contain);
       height: 100%;
     }
   }
@@ -117,7 +115,7 @@ header {
     display: block;
     padding: 0;
     img {
-      object-fit:contain;
+      @include object-fit(cover);
       max-height: 100%;
       min-width: 100%;
     }
@@ -145,7 +143,7 @@ header {
     }
 
 
-    @media only screen and (max-width: 600px){
+@include bp(mobile){
   section, header  {
     padding: $spacingV  $spacingH*2;
   }
@@ -196,47 +194,47 @@ header {
 }
 
 
-// @include bp(ipadVMore){
-//   section , h1, header div:first-of-type {
-//     padding: $spacingV  $spacingH*2;
-//   }
+@include bp(ipadVMore){
+  section , h1, header div:first-of-type {
+    padding: $spacingV  $spacingH*2;
+  }
 
-//   .flight--general{
-//     padding-bottom:0  ;
-//   }
+  .flight--general{
+    padding-bottom:0  ;
+  }
 
-//   .flight--TimeInfo {
-//     padding-top:0  ;
-//   }
+  .flight--TimeInfo {
+    padding-top:0  ;
+  }
 
-//   .flight--qrcode {
-//     padding: 0 $spacingV ;
-//   }
+  .flight--qrcode {
+    padding: 0 $spacingV ;
+  }
 
-//   .extra {
-//     &--meteo {
-//       justify-content: space-around;
-//       > div {
-//         max-width: 30%;
-//         &:last-of-type {
-//           padding-right: 0;
-//         }
-//       }
-//     }
-//   }
+  .extra {
+    &--meteo {
+      justify-content: space-around;
+      > div {
+        max-width: 30%;
+        &:last-of-type {
+          padding-right: 0;
+        }
+      }
+    }
+  }
 
-// }
+}
 
 
 
-// @include bp(ipadHmore){
-//   .flight--TimeInfo {
-//     padding-top: $spacingV;
-//   }
-//   .flight--qrcode {
-//     padding: 0 $spacingV ;
-//   }
-// }
+@include bp(ipadHmore){
+  .flight--TimeInfo {
+    padding-top: $spacingV;
+  }
+  .flight--qrcode {
+    padding: 0 $spacingV ;
+  }
+}
 
 
 
@@ -253,13 +251,17 @@ main {
 //border radius
 header {
   border-radius: $bradius $bradius 0 0;
-
+  @include bp(mobile){
+    border-radius:0;
+  }
 }
 .flight {
   &--qrcode {
     border-radius: 0 0 $bradius  0;
 
-
+    @include bp(mobile){
+      border-radius:0;
+    }
   }
   &--general  {
     border-radius: 0 0 0 $bradius;
@@ -276,111 +278,111 @@ header {
     }
   }
 }
-// @include bp(ipadV){
-//   .flight {
-//     &--TimeInfo {
-//       border-radius: 0 0 0 $bradius;
-//     }
-//     &--general  {
-//       border-radius: 0;
-//     }
-//     &--qrcode {
-//       justify-content: flex-end;
-//     }
-//   }
-// }
-// @include bp(ipadVMore){
-//   main {
-//     height: 100vh;
-//   }
-//   .flight {
-//     &--qrcode {
-//       height: 100%;
-//       padding: 0;
-//     }
-//   }
-//   .extra {
-//     &--image {
-//       min-height: 100vh;
-//     }
-//   }
-// }
+@include bp(ipadV){
+  .flight {
+    &--TimeInfo {
+      border-radius: 0 0 0 $bradius;
+    }
+    &--general  {
+      border-radius: 0;
+    }
+    &--qrcode {
+      justify-content: flex-end;
+    }
+  }
+}
+@include bp(ipadVMore){
+  main {
+    height: 100vh;
+  }
+  .flight {
+    &--qrcode {
+      height: 100%;
+      padding: 0;
+    }
+  }
+  .extra {
+    &--image {
+      min-height: 100vh;
+    }
+  }
+}
 
-// @supports (display: grid) {
-//   @include bp(ipadVMore){
-//     .flight {
-//       &--qrcode {
-//         height: initial;
-//       }
-//     }
-//   }
-// }
+@supports (display: grid) {
+  @include bp(ipadVMore){
+    .flight {
+      &--qrcode {
+        height: initial;
+      }
+    }
+  }
+}
 
-// @supports  not (display: grid) {
-//   main {
-//     margin: 0 auto;
-//     max-width: 500px;
-//     grid-gap: 0 0;
-//     display: block;
-//   }
-//   //border radius
-//   header {
-//     border-radius: 0;
-//     @include bp(mobile){
-//       border-radius:0;
-//     }
-//   }
+@supports  not (display: grid) {
+  main {
+    margin: 0 auto;
+    max-width: 500px;
+    grid-gap: 0 0;
+    display: block;
+  }
+  //border radius
+  header {
+    border-radius: 0;
+    @include bp(mobile){
+      border-radius:0;
+    }
+  }
 
-//   .flight {
-//     &--qrcode {
-//       border-radius: 0;
+  .flight {
+    &--qrcode {
+      border-radius: 0;
 
-//       @include bp(mobile){
-//         border-radius:0;
-//       }
-//     }
-//     &--general  {
-//       border-radius: 0;
-//     }
-//   }
-//   .extra {
-//     &--meteo {
-//       border-radius: 0;
-//     }
-//     &--image {
-//       min-height: inherit;
-//       display: block;
-//     }
-//   }
-//   @include bp(ipadV){
-//     .flight {
-//       &--TimeInfo {
-//         border-radius: 0;
-//       }
-//       &--general  {
-//         border-radius: 0;
-//       }
-//       &--qrcode {
-//         justify-content: center;
-//       }
-//     }
-//   }
-//   @include bp(ipadVMore){
-//     main {
-//       height: inherit;
-//     }
-//     .flight {
-//       &--qrcode {
-//         height: initial;
-//       }
-//     }
-//     .extra {
-//       &--image {
-//         min-height: inherit;
-//       }
-//     }
-//   }
-// }
+      @include bp(mobile){
+        border-radius:0;
+      }
+    }
+    &--general  {
+      border-radius: 0;
+    }
+  }
+  .extra {
+    &--meteo {
+      border-radius: 0;
+    }
+    &--image {
+      min-height: inherit;
+      display: block;
+    }
+  }
+  @include bp(ipadV){
+    .flight {
+      &--TimeInfo {
+        border-radius: 0;
+      }
+      &--general  {
+        border-radius: 0;
+      }
+      &--qrcode {
+        justify-content: center;
+      }
+    }
+  }
+  @include bp(ipadVMore){
+    main {
+      height: inherit;
+    }
+    .flight {
+      &--qrcode {
+        height: initial;
+      }
+    }
+    .extra {
+      &--image {
+        min-height: inherit;
+      }
+    }
+  }
+}
 
 
 
@@ -390,13 +392,14 @@ header {
   }
   &--meteo {
     z-index: 2;
+    @include bp(ipadVMore){
       justify-self: center;
-
+    }
   }
 
 }
 
-@media only screen and (max-width: 600px){
+@include bp(mobile){
   main {
     grid-template-columns: 1fr  1fr;
   }
@@ -436,94 +439,94 @@ header {
 
 
 
-// @include bp(ipadV){
-//   main {
-//     grid-template-columns: 1fr repeat(3, minmax(100px, 200px)) 1fr;
-//     grid-template-rows: 1fr 60px repeat(3, 75px) 10vh auto 1fr ;
-//   }
-//   header {
-//       grid-column: 2 / span 3;
-//       grid-row: 2 / span 1;
-//       z-index: 2;
-//   }
+@include bp(ipadV){
+  main {
+    grid-template-columns: 1fr repeat(3, minmax(100px, 200px)) 1fr;
+    grid-template-rows: 1fr 60px repeat(3, 75px) 10vh auto 1fr ;
+  }
+  header {
+      grid-column: 2 / span 3;
+      grid-row: 2 / span 1;
+      z-index: 2;
+  }
 
-//   .flight {
-//    &--PassInfo, &--qrcode {
-//       z-index: 2;
-//     }
-//     &--general {
-//       grid-column: 2 / span 2;
-//       grid-row: 3 / span 1;
-//       z-index: 3;
-//     }
-//     &--TimeInfo {
-//       grid-column: 2 / span 2;
-//       grid-row: 5 / span 1;
-//       z-index: 3;
-//     }
-//     &--PassInfo {
-//       grid-column: 2 / span 2;
-//       grid-row: 4 / span 1;
-//     }
-//     &--qrcode {
-//       grid-column: 4 / span 1;
-//       grid-row: 3 / span 3;
-//     }
-//   }
-//   .extra {
-//     &--meteo {
-//       grid-column: 2 / span 3;
-//       grid-row: 7 / span 1;
-//     }
-//     &--image {
-//       grid-column: 1 / span 7;
-//       grid-row: 1 / span 8;
-//     }
-//   }
-// }
+  .flight {
+   &--PassInfo, &--qrcode {
+      z-index: 2;
+    }
+    &--general {
+      grid-column: 2 / span 2;
+      grid-row: 3 / span 1;
+      z-index: 3;
+    }
+    &--TimeInfo {
+      grid-column: 2 / span 2;
+      grid-row: 5 / span 1;
+      z-index: 3;
+    }
+    &--PassInfo {
+      grid-column: 2 / span 2;
+      grid-row: 4 / span 1;
+    }
+    &--qrcode {
+      grid-column: 4 / span 1;
+      grid-row: 3 / span 3;
+    }
+  }
+  .extra {
+    &--meteo {
+      grid-column: 2 / span 3;
+      grid-row: 7 / span 1;
+    }
+    &--image {
+      grid-column: 1 / span 7;
+      grid-row: 1 / span 8;
+    }
+  }
+}
 
 
-// @include bp(ipadHmore){
-//   main {
-//     grid-template-columns: 1fr repeat(4, 150px) 250px 1fr;
-//     grid-template-rows: 1fr 60px repeat(2, 100px)  0.5fr auto  1fr;
-//   }
-//   header {
-//       grid-column: 2 / span 5;
-//       grid-row: 2 / span 1;
-//       z-index: 2;
-//   }
-//   .flight {
-//     &--general, &--TimeInfo , &--PassInfo, &--qrcode {
-//       z-index: 2;
-//     }
-//     &--general {
-//       grid-column: 2 / span 2;
-//       grid-row: 3 / span 2;
-//     }
-//     &--TimeInfo {
-//       grid-column: 4 / span 2;
-//       grid-row: 3 / span 1;
-//     }
-//     &--PassInfo {
-//       grid-column: 4 / span 2;
-//       grid-row: 4 / span 1;
-//     }
-//     &--qrcode {
-//       grid-column: 6 / span 1;
-//       grid-row: 3 / span 2;
-//     }
-//   }
-//   .extra {
+@include bp(ipadHmore){
+  main {
+    grid-template-columns: 1fr repeat(4, 150px) 250px 1fr;
+    grid-template-rows: 1fr 60px repeat(2, 100px)  0.5fr auto  1fr;
+  }
+  header {
+      grid-column: 2 / span 5;
+      grid-row: 2 / span 1;
+      z-index: 2;
+  }
+  .flight {
+    &--general, &--TimeInfo , &--PassInfo, &--qrcode {
+      z-index: 2;
+    }
+    &--general {
+      grid-column: 2 / span 2;
+      grid-row: 3 / span 2;
+    }
+    &--TimeInfo {
+      grid-column: 4 / span 2;
+      grid-row: 3 / span 1;
+    }
+    &--PassInfo {
+      grid-column: 4 / span 2;
+      grid-row: 4 / span 1;
+    }
+    &--qrcode {
+      grid-column: 6 / span 1;
+      grid-row: 3 / span 2;
+    }
+  }
+  .extra {
 
-//     &--meteo {
-//       grid-column: 2 / span 5;
-//       grid-row: 6 / span 1 ;
-//     }
-//     &--image {
-//       grid-column: 1 / span 7;
-//       grid-row: 1 / span 7;
-//       z-index: 1;
-//     }
-//   }
-// }
+    &--meteo {
+      grid-column: 2 / span 5;
+      grid-row: 6 / span 1 ;
+    }
+    &--image {
+      grid-column: 1 / span 7;
+      grid-row: 1 / span 7;
+      z-index: 1;
+    }
+  }
+}

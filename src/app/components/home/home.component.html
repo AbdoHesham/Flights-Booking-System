@@ -78,6 +78,8 @@
               formControlName="departing_date"
               id="Departing"
             />
+
+
           </div>
         </div>
 
@@ -112,6 +114,8 @@
               <span class="card-price"> {{ flight.price | currency }}</span>
             </div>
             <button class="btn btn-primary" [routerLink]="['/flight',flight.id]"> more details</button>
+            <button class="btn btn-secondary ml-2" [routerLink]="['/book',flight.id]"> Book Now </button>
+
           </div>
         </a>
       </div>
