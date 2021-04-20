@@ -15,4 +15,21 @@ export class AppComponent {
 
     localStorage.getItem('currentLang')== "en" ? document.dir = 'ltr' : document.dir = 'rtl'
   }
+
+
+  onActivate(event: any) {
+    // window.scroll(0,0);
+
+let scrollToTop = window.setInterval(() => {
+    let pos = window.pageYOffset;
+    if (pos > 0) {
+        window.scrollTo(0, pos - 20);
+    } else {
+        window.clearInterval(scrollToTop);
+    }
+}, 16);
+}
+
+
+
 }
