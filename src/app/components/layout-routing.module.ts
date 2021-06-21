@@ -8,6 +8,7 @@ import { SearchComponent } from './search/search.component';
 import { BookingComponent } from './booking/booking.component';
 import { TicketComponent } from './ticket/ticket.component';
 import { AdminComponent } from './admin/admin.component';
+import { AuthenticationGuard } from '../authentication.guard';
 
 const routes: Routes = [
   { path: '', redirectTo:'/home',pathMatch:'full' },
@@ -17,10 +18,9 @@ const routes: Routes = [
   { path: 'search', component: SearchComponent },
   { path: 'book/:id', component: BookingComponent },
   { path: 'ticket', component: TicketComponent },
-  { path: 'admin', component: AdminComponent },
-
   { path: 'auth/login', component: LoginComponent },
 
+  { path: 'admin', component: AdminComponent ,canActivate :[AuthenticationGuard] },
   {path:'**',component: PageNotFoundComponent},
 
 

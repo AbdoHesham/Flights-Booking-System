@@ -9,9 +9,7 @@ export class AuthService {
 
 
   get isLoggedIn() {
-    if (localStorage.getItem('userdata')) {
-      return true;
-    }
-    return false
+   return !!localStorage.getItem("userdata");  
+
   }
 }

@@ -65,7 +65,7 @@ export class LoginComponent implements OnInit {
             // this.greatingNameEvent.emit(email)
             // console.log(this.greatingNameEvent.emit(email))
             this.toastr.success("you are logged in successfully");
-            this.router.navigateByUrl('/');
+            this.router.navigateByUrl('/admin');
 
 
     }
