@@ -4,7 +4,7 @@ import { FooterService } from 'src/shared/services/service-footer/footer.service
 import { NavService } from 'src/shared/services/service-nav/nav.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-
+// import { AdminComponent}from'../../components/admin/admin.component'
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -19,6 +19,7 @@ export class LoginComponent implements OnInit {
     private fg: FormBuilder,
     private router: Router,
     private toastr: ToastrService,
+    // private AdminComponent:AdminComponent
     ) { }
     public  loginForm = this.fg.group({
       email: ["", [
@@ -30,6 +31,8 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     this.nav.hide();
     this.ftr.hide();
+    // clearInterval()
+
   }
 
   requiredErrorMessage($feild: string | number) {

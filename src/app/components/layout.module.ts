@@ -29,6 +29,6 @@ import { BookingComponent } from './booking/booking.component'; // <-- import th
     NgxPaginationModule
 
   ],exports:[
-  ]
+  ],
 })
 export class LayoutModule { }

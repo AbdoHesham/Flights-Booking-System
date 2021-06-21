@@ -40,9 +40,9 @@
     </tbody>
   </table>
 
-  <div class="d-flex justify-content-center mb-5">
+  <div class="d-flex justify-content-center mb-5" *ngIf="!clients" >
 
-    <h1 class="text-center" *ngIf="!clients" >
+    <h1 class="text-center" >
         no data found 
       </h1>
 
