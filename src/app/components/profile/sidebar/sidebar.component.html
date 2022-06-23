@@ -1,0 +1,29 @@
+<div class="d-flex" id="wrapper">
+    <!-- Sidebar -->
+    <div class="bg-light border-right" id="sidebar-wrapper">
+        <div class="sidebar-heading">Welcome {{ userEmail.slice(0,9) || 'user'}} ..
+
+        </div>
+        <div class="list-group list-group-flush" *ngFor="let item of links">
+            <a [routerLink]="item?.routerLink" class="{{ item.class }} " routerLinkActive="style_with_links_sidebar">{{ item.Name }}</a
+      >
+    </div>
+
+        </div>
+
+        <!-- /#sidebar-wrapper -->
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <!--  (click)="channelChanged($event)" -->
+            <a class="d-block d-md-none" id="menu-toggle" (click)="channelChanged($event)" >
+                <i class="arrow right"></i>
+                <i class="arrow right"></i>
+                <i class="arrow right"></i>
+
+            </a>
+            <router-outlet></router-outlet>
+        </div>
+        <!-- /#page-content-wrapper -->
+    </div>
+
+    <!-- /#wrapper -->

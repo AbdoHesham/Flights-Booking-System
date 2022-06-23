@@ -6,11 +6,11 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  selector: 'app-login-admin',
+  templateUrl: './login-admin.component.html',
+  styleUrls: ['./login-admin.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginAdminComponent implements OnInit {
   show: boolean=false
   userCredentials: {}={};
 @Output () greatingNameEvent = new EventEmitter<string>();
@@ -60,12 +60,12 @@ export class LoginComponent implements OnInit {
       this.toastr.error("Please Enter Valid password")
     }
     else {
-             localStorage.setItem('userdata',  JSON.stringify(this.userCredentials));
+             localStorage.setItem('AdminData',  JSON.stringify(this.userCredentials));
             //just for development
             // this.greatingNameEvent.emit(email)
             // console.log(this.greatingNameEvent.emit(email))
             this.toastr.success("you are logged in successfully");
-            this.router.navigateByUrl('/');
+            this.router.navigateByUrl('/admin');
 
 
     }

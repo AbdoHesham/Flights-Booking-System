@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-admin',
@@ -6,10 +8,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./admin.component.scss']
 })
 export class AdminComponent implements OnInit {
-  clients: any;
+  clients: any[]=[];
   clientsInfo: any;
 
-  constructor() { }
+  constructor(    private router: Router,
+    private toaster : ToastrService
+    ) { }
 
   ngOnInit(): void {
    this. getDataFromLocalStorage()
@@ -17,8 +21,9 @@ export class AdminComponent implements OnInit {
 
 
   getDataFromLocalStorage(){
-    this.clients = JSON.parse(localStorage.getItem('bookingList') || '{}');
+    this.clients = JSON.parse(localStorage.getItem('bookingList')|| '[]');
 
   }
+
 
 }

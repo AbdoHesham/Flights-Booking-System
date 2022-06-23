@@ -1,5 +1,5 @@
-<nav class="navbar navbar-expand-lg navbar-light  mb-3" [ngClass]="{'navbar-inverse': scrolled}"*ngIf="nav.visible" >
-  <!--  -->
+<nav class="navbar navbar-expand-lg navbar-light  mb-3 navbar-inverse"  > 
+  <!-- [ngClass]="{'navbar-inverse': scrolled}"*ngIf="nav.visible"  -->
   <div class="container">
     <a class="navbar-brand" style="margin-right:70%;"   [routerLink]="'.'"><img class="logo" src="../../assets/images/flyinLogo.png" alt="logo"></a>
 
@@ -18,15 +18,39 @@
             <!-- Step 4: Close the menu when a link is clicked. -->
             <a class="nav-link mr-3" [routerLink]="'home'" (click)="isMenuCollapsed = true" routerLinkActive="under-line-nav-tabs">Home</a>
           </li>
-          <li class="nav-item ">
-            <button class="btn btn-golden" [routerLink]="'/auth/login'" (click)="isMenuCollapsed = true" [hidden]="isLogged()">login</button>
-          </li>
-          <li class="nav-item ">
-            <button class=" btn btn-golden"  (click)="isMenuCollapsed = true ; logout()"  [hidden]="!isLogged()">logout</button>
-          </li>
-          <li class="nav-item ">
-            <p class="nav-link "   [hidden]="!isLogged()" >hello  </p>
-          </li>
+          <li class="nav-item" ngbDropdown display="dynamic" placement="bottom-right" [hidden]="isLogged()">
+            <a class="nav-link" tabindex="0" ngbDropdownToggle id="navbarDropdown3" role="button">
+              Login & registeration
+          </a>
+            <div ngbDropdownMenu aria-labelledby="navbarDropdown3" class="dropdown-menu">
+                <a ngbDropdownItem [routerLink]="'auth/login'" (click)="isMenuCollapsed = true" (click)="$event.preventDefault()">sign in  </a>
+                <a ngbDropdownItem [routerLink]="'auth/register'" (click)="isMenuCollapsed = true" (click)="$event.preventDefault()">sign up </a>
+            </div>
+        </li>
+        <li class="nav-item" ngbDropdown display="dynamic" placement="bottom-right" [hidden]="!isLogged()">
+            <a class="nav-link" tabindex="0" ngbDropdownToggle id="navbarDropdown3" role="button">
+               Account
+         </a>
+            <div ngbDropdownMenu aria-labelledby="navbarDropdown3" class="dropdown-menu">
+                <a ngbDropdownItem [routerLink]="'/profile'" (click)="isMenuCollapsed = true" (click)="$event.preventDefault()">profile </a>
+                <a ngbDropdownItem (click)="isMenuCollapsed = true" (click)=" logout()">log out  </a>
+            </div>
+        </li>
+        <!-- <li class="nav-link mr-3" [hidden]="!isAdminLogged()" style="cursor: pointer;">
+          <a class="nav-link" tabindex="0" ngbDropdownToggle id="navbarDropdown4" role="button">
+           Admin Account 
+      </a>
+         <div ngbDropdownMenu aria-labelledby="navbarDropdown4" class="dropdown-menu">
+             <a ngbDropdownItem [routerLink]="'/admin'" (click)="isMenuCollapsed = true" (click)="$event.preventDefault()">Admin Profile </a>
+             <a ngbDropdownItem (click)="isMenuCollapsed = true " (click)="logoutAdmin()" >log out as admin </a>
+         </div>
+
+
+        </li> -->
+        <li class="nav-item"  [hidden]="!isAdminLogged()" style="cursor: pointer;">
+          <a ngbDropdownItem (click)="isMenuCollapsed = true ;logoutAdmin() " >log out as admin </a>
+
+        </li>
         </ul>
       </div>
 

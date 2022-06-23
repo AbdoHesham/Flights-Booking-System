@@ -14,4 +14,11 @@ export class AuthService {
     }
     return false
   }
+
+  get isAdminLoggedIn() {
+    if (localStorage.getItem('AdminData')) {
+      return true;
+    }
+    return false
+  }
 }

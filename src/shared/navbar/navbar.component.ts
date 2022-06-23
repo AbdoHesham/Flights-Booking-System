@@ -11,13 +11,12 @@ import { NavService } from '../services/service-nav/nav.service';
 })
 export class NavbarComponent implements OnInit {
   // @HostListener('window:scroll', ['$event'])
-  scrolled:boolean=false
-  geartingName:[] =[];
-  @HostListener("document:scroll", [])
+  scrolled: boolean = false;
+  geartingName: [] = [];
+  @HostListener('document:scroll', [])
   onWindowScroll() {
-  (window.pageYOffset > 60) ? this.scrolled = true : this.scrolled = false
-
-}
+    window.pageYOffset > 60 ? (this.scrolled = true) : (this.scrolled = false);
+  }
 
   lang = 'en';
   public isMenuCollapsed = true;
@@ -28,38 +27,40 @@ export class NavbarComponent implements OnInit {
     private toastr: ToastrService,
     public nav: NavService,
     private authService: AuthService
-  ) {
-
-  }
+  ) {}
 
   ngOnInit(): void {
-
-    this.changeLang()
+    this.changeLang();
     // this.geartingName=
 
     //JSON.parse(localStorage.getItem('userdata')|| '{}').email
-
   }
 
   changeLang() {
-    this.lang == 'en'?document.dir ='ltr':document.dir ='ltr'
-
+    this.lang == 'en' ? (document.dir = 'ltr') : (document.dir = 'ltr');
   }
 
   logout() {
-    if  (localStorage.getItem("userdata")) {
-      localStorage.clear()
-
+    if (localStorage.getItem('userdata')) {
+      localStorage.removeItem('userdata');
     }
-    this.toastr.success("you are logout successfully")
+    this.toastr.success('you are logout successfully');
     this.router.navigateByUrl('/home');
   }
 
-isLogged(){
+  isLogged() {
+    return this.authService.isLoggedIn;
+  }
 
-  return this.authService.isLoggedIn;
-}
+  isAdminLogged() {
+    return this.authService.isAdminLoggedIn;
+  }
 
-
-
+  logoutAdmin() {
+    localStorage.getItem('AdminData')
+      ? localStorage.removeItem('AdminData')
+      : localStorage.removeItem('AdminData');
+    this.router.navigateByUrl('/');
+    this.toastr.success('you are logged out as admin successfully');
+  }
 }

@@ -1,0 +1,51 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-md-12 ">
+            <h4>Flights</h4>
+            <small class="text-muted "> See how your Flights are managed and check the latest status on your order</small>
+            <div class="main_section mt-5 text-center" >
+                <div *ngIf="flights.length < 1">
+                    
+                    <!-- this h1 will show if flights < 1 -->
+                    <h1  style="text-align:center; padding:50px"> you Don't have flights yet </h1>
+                    <img src="../../../../assets/images/empty-state.svg" style=" height: 500px;"  alt="" srcset="">
+                    <!-- this h1 will show if flights < 1 -->
+                </div>
+                <div *ngIf="flights.length > 0">
+                    <table class="table table-striped table-bordered" >
+                        <thead>
+                          <tr class="table-head">
+                            <th scope="col">No</th>
+                            <th scope="col">client name</th>
+                            <th scope="col">client phone</th>
+                            <th scope="col">client email</th>
+                    
+                            <th scope="col">flight details</th>
+                            <th scope="col">Departing</th>
+                            <th scope="col">Arriving</th>
+                            <th scope="col">time Departing</th>
+                            <th scope="col">flight class</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <!-- ; [ngbTooltip]="user.name" -->
+                          <tr *ngFor="let flight of flights; index as i">
+                            <th scope="row">{{ i + 1 }}</th>
+                            <td>{{ flight?.bookingDetails.fullName }}</td>
+                            <td>{{ flight?.bookingDetails.phone }}</td>
+                            <td>{{ flight?.bookingDetails.email }}</td>
+                            <td>{{ flight?.from }} - {{ flight?.to }}</td>
+                            <td>{{ flight?.Departing |date:'short' }}</td>
+                            <td>{{ flight?.Arriving |date:'short' }}</td>
+                            <td>{{ flight?.timeDeparting }} - {{ flight?.timeArriving }}</td>
+                            <td>{{ flight?.flight_class }}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>

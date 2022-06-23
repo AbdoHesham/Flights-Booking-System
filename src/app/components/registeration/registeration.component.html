@@ -1,0 +1,67 @@
+<div class="general-mrg"></div>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 col-sm-2 d-md-block  d-none ">
+            <img class="sign-up-img" src="../../../assets/images/sign up.png" alt="" srcset="">
+        </div>
+        <div class="col-md-4 col-sm-10 bg-white">
+
+            <p class="text-center">Get Started with a Free Account!</p>
+            <hr>
+            <!-- form createUser  start -->
+            <form [formGroup]="createUser">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Name" formControlName="name">
+                    <small class="form-text  danger" *ngIf="!createUser.get('name').valid && (createUser.get('name').dirty || createUser.get('name').touched)">
+                        this feild is required !
+                    </small>
+
+                    <small class="form-text  danger" *ngIf="createUser.get('name').errors?.minlength">
+                        minlength is must be 4 ckaracters!</small>
+                </div>
+
+                <div class="form-group">
+                    <input type="Email" class=" form-control " placeholder="Email" formControlName="email">
+
+                    <small class="form-text  danger" *ngIf="!createUser.get('email').valid && (createUser.get('email').dirty || createUser.get('email').touched)">
+                        this feild is required
+                    </small>
+
+                    <small class="form-text  danger" *ngIf="createUser.get('email').errors?.email">
+                        You Must Enter like this Example@mail.com!</small>
+                </div>
+                <div class="form-group">
+                    <input type="text" class=" form-control " placeholder="passward" formControlName="password">
+
+                    <small class="form-text  danger" *ngIf="!createUser.get('password').valid && (createUser.get('password').dirty || createUser.get('password').touched)">
+                        this feild is required
+                    </small>
+
+                    <small class="form-text  danger" *ngIf="createUser.get('password').errors?.minlength">
+                        minlength is must be 8 ckaracters!! </small>
+
+                </div>
+                <div class="form-group">
+                    <input type="text" class=" form-control " placeholder="Password Confirmation" formControlName="Repassword">
+
+                    <small class="form-text  danger" *ngIf="!createUser.get('Repassword').valid && (createUser.get('Repassword').dirty || createUser.get('Repassword').touched)">
+                        this feild is required
+                    </small>
+
+                    <small class="form-text  danger" *ngIf="createUser.get('Repassword').errors?.checkPasswords">
+                        passward doesn't match</small>
+
+                </div>
+                <div class="form-group">
+                    <button class=" btn btn-lg btn-masterd btn-block " name="save" value="save" (click)="submitForm()">
+                            Create my Account
+                    </button>
+                </div>
+            </form>
+            <!-- form createUser  end -->
+            <p class="text-center terms">By continuing, you agree to the Terms of Service and Privacy Policy.</p>
+        </div>
+    </div>
+</div>
