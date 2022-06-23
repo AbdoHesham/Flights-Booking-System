@@ -14,7 +14,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-
+import {AuthService} from '../shared/services/auth/auth.service'
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,7 +43,9 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
      })
 
   ],
-  providers: [],
+  providers: [
+    AuthService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
