@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewChecked, Component, DoCheck, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-orders',
   templateUrl: './orders.component.html',
   styleUrls: ['./orders.component.scss'],
 })
-export class OrdersComponent implements OnInit {
+export class OrdersComponent implements OnInit,AfterViewChecked,DoCheck {
   totalLenght = 0;
   flights: any[] = [];
   userEmail: any = JSON.parse(localStorage.getItem('userdata') || '');
@@ -13,7 +13,14 @@ export class OrdersComponent implements OnInit {
   constructor() {
     this.userEmail = this.userEmail.email;
     this.flights = JSON.parse(localStorage.getItem('bookingList') || '');
-    console.log(this.userEmail, this.flights);
+  }
+  ngOnInit(): void {}
+  ngAfterViewChecked() {
+
+  
+  }
+
+  ngDoCheck() {
     this.flights = this.flights.filter((f) => {
       if(f.bookingDetails.email == this.userEmail){
         return this.flights;
@@ -26,11 +33,10 @@ export class OrdersComponent implements OnInit {
       //   ? console.log(' email matched ')
       //   : console.log(' email not matched ');
       //   console.log(this.flights);
-
+  
       // console.log( this.flights);
      
     });
-    console.log(this.flights);
   }
-  ngOnInit(): void {}
+
 }
