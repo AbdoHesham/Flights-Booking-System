@@ -15,6 +15,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import {AuthService} from '../shared/services/auth/auth.service'
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,7 +45,7 @@ import {AuthService} from '../shared/services/auth/auth.service'
 
   ],
   providers: [
-    AuthService
+    AuthService,{provide:LocationStrategy,useClass:HashLocationStrategy}
   ],
   bootstrap: [AppComponent]
 })
